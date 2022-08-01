@@ -4,6 +4,9 @@ export const rules = {
   ],
   password: [
     { required: true, message: '请输入密码', trigger: 'blur' },
+
+    // 最少6位,包括至少1个大写字母,1个小写字母,1个数字,1个特殊字符
+    // pattern:/^\S*(?=\S{6,})(?=\S*\d)(?=\S*[A-Z])(?=\S*[a-z])(?=\S*[!@#$%^&*? ])\S*$/
     { min: 5, max: 16, message: '密码长度为5~16位', trigger: 'blur' }
   ],
   code: [
