@@ -112,7 +112,7 @@ export default {
 
 <style lang="scss">
 .login-container {
-  width: 99%;
+  width: 100%;
   height: 100%;
   background: url('./img/背景图.png') no-repeat center;
   background-size: cover;
