@@ -46,10 +46,7 @@
               @keydown.enter.native="onSubmit"
             />
             <span class="boxBottom" @click="getCode">
-              <img
-                :src="`http://localhost:9989/likede/api/user-service/user/imageCode/${$store.state.user.random}`"
-                alt=""
-              />
+              <img :src="$store.state.user.img" alt="" />
             </span>
           </el-form-item>
           <el-button :loading="loading" @click="onSubmit" :disabled="disabled"

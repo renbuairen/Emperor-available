@@ -3,6 +3,7 @@ import request from '@/utils/request'
 export const getCode = (num) => {
   return request({
     url: `/api/user-service/user/imageCode/${num}`,
+    responseType: 'blob',
   })
 }
 

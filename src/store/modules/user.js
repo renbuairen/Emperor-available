@@ -10,6 +10,7 @@ export default {
     userName: '',
     userId: '',
     roleCode: '',
+    img: '',
   },
   mutations: {
     setToken(state, payload) {
@@ -25,10 +26,13 @@ export default {
       state.userId = payload.userId
       state.roleCode = payload.roleCode
     },
+    setImg(state, payload) {
+      state.img = payload
+    },
   },
   actions: {
     async getLogin(context, payload) {
-      const { data } = await getLogin(payload, context.state.random)
+      const data = await getLogin(payload, context.state.random)
       console.log(data)
       if (data.success) {
         Message({
@@ -45,7 +49,12 @@ export default {
     async getCode(context) {
       const numRandom = Math.random()
       context.commit('setRandom', numRandom)
-      await getCode(numRandom)
+      const img = await getCode(numRandom)
+      context.commit('setImg', window.URL.createObjectURL(img))
+    },
+    //退出
+    logout(context) {
+      context.commit('setToken', '')
     },
   },
 }

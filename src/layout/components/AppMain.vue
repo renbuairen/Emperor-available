@@ -12,8 +12,8 @@ export default {
   computed: {
     key() {
       return this.$route.path
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -21,11 +21,15 @@ export default {
 .app-main {
   /*50 = navbar  */
   min-height: calc(100vh - 50px);
-  width: 100%;
-  position: relative;
+  position: fixed;
   overflow: hidden;
+  width: 100%;
+  height: 100%;
+  padding-left: 187px;
+  padding-top: 80px;
+  background-color: rgb(243, 246, 251);
 }
-.fixed-header+.app-main {
+.fixed-header + .app-main {
   padding-top: 50px;
 }
 </style>
