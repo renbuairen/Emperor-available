@@ -1,16 +1,17 @@
-import { getCode, getLogin } from '@/api/user'
+import { getCode, getLogin, getUserInfo } from '@/api/user'
 import { Message } from 'element-ui'
 import router from '@/router'
+import { setTokenTime } from '@/utils/auth'
 
 export default {
   namespaced: true,
   state: {
     random: '',
     token: '',
-    userName: '',
     userId: '',
     roleCode: '',
     img: '',
+    userInfo: {},
   },
   mutations: {
     setToken(state, payload) {
@@ -22,24 +23,26 @@ export default {
 
     setLogin(state, payload) {
       state.token = payload.token
-      state.userName = payload.userName
       state.userId = payload.userId
       state.roleCode = payload.roleCode
     },
     setImg(state, payload) {
       state.img = payload
     },
+    setUserInfo(state, payload) {
+      state.userInfo = payload
+    },
   },
   actions: {
     async getLogin(context, payload) {
       const data = await getLogin(payload, context.state.random)
-      console.log(data)
       if (data.success) {
         Message({
           message: `${data.msg}`,
           type: 'success',
         })
         context.commit('setLogin', data)
+        setTokenTime()
         router.push('/')
       } else {
         Message.error(data.msg)
@@ -55,6 +58,12 @@ export default {
     //退出
     logout(context) {
       context.commit('setToken', '')
+      context.commit('setUserInfo', {})
+    },
+    //获取用户信息
+    async getUserInfo(context) {
+      const userInfo = await getUserInfo(context.state.userId)
+      context.commit('setUserInfo', userInfo)
     },
   },
 }

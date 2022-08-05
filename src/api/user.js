@@ -20,3 +20,9 @@ export const getLogin = (store, clientToken) => {
     },
   })
 }
+
+export const getUserInfo = (id) => {
+  return request({
+    url: `/api/user-service/user/${id}`,
+  })
+}

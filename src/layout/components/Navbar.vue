@@ -9,10 +9,12 @@
         <div class="avatar-wrapper">
           <img
             v-imgError="defaultImg"
-            src="http://destiny001.gitee.io/image/monkey_02.jpg"
+            :src="$store.state.user.userInfo.image || defaultImg"
             class="user-avatar"
           />
-          <span class="user">欢迎您, admin</span>
+          <span class="user"
+            >欢迎您, {{ $store.state.user.userInfo.userName }}</span
+          >
           <el-button type="text" @click="logout">
             <div style="margin: -5px 0 0 10px">
               <span style="cursor: pointer"
