@@ -27,6 +27,7 @@ export default {
   height: 100%;
   padding-left: 187px;
   padding-top: 80px;
+  padding-right: 20px;
   background-color: rgb(243, 246, 251);
 }
 .fixed-header + .app-main {
